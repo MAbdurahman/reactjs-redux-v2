@@ -9,7 +9,7 @@ const customerInitialState = {
     createdAt: "",
 }
 
-export default function customerReducer (state = initialCustomerState, action) {
+export default function customerReducer (state = customerInitialState, action) {
     switch(action.type) {
         case customerTypes.CREATE_CUSTOMER:
             return {
