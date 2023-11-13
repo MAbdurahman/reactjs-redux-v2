@@ -59,7 +59,7 @@ export function requestLoan(amount, purpose) {
 
 export function paymentToLoan(amount, purpose) {
     return {
-        type: accountTypes.PAYMENT_TO_LOAN, payload: {
+        type: accountTypes.LOAN_PAYMENT, payload: {
             amount, purpose
         }
     }
