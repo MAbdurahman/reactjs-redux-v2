@@ -5,6 +5,7 @@ const accountInitialState = {
     balance: 0,
     loan: 0,
     loanPurpose: "",
+    loanOutstanding: 0,
     isLoading: false,
 };
 
@@ -17,7 +18,7 @@ export default function accountReducer( state = accountInitialState, action) {
             }
         case accountTypes.ACCOUNT_DEPOSIT:
             return {
-                ...state, balance: state.balance + action.payload
+                ...state, balance: state.balance + action.payload, isLoading: false
             }
         case accountTypes.LOAN_REQUEST:
             if (state.loan > 0) {
@@ -27,23 +28,45 @@ export default function accountReducer( state = accountInitialState, action) {
                 ...state,
                 loan: action.payload.amount,
                 loanPurpose: action.payload.purpose,
-                balance: state.balance + action.payload.amount,
+                loanOutstanding: action.payload.amount
+                /*balance: state.balance + action.payload.amount,*/
             }
         case accountTypes.LOAN_PAYMENT:
             return {
                 ...state,
                 /*loan: 0,*/
                 loanPurpose: action.payload.purpose,
-                balance: state.balance - action.payload.amount,
-                loan: state.balance - action.payload.amount
+                loanOutstanding: state.loanOutstanding - action.payload.amount
+/*                balance: state.balance - action.payload.amount,*/
+
+                /*loan: state.balance - action.payload.amount*/
+            }
+        case accountTypes.ACCOUNT_DEPOSIT:
+            return {
+                ...state,
+                isLoading: true
             }
         default:
             return state;
     }
 }
 
-export function depositToAccount(amount) {
-    return {type: accountTypes.ACCOUNT_DEPOSIT, payload: amount};
+export function depositToAccount(amount, currency) {
+    if (currency === "USD") {
+        return {type: accountTypes.ACCOUNT_DEPOSIT, payload: amount};
+    }
+    return async function (dispatch, getState) {
+
+        dispatch({ type: accountTypes.CONVERT_CURRENCY });
+
+        const res = await fetch(
+            `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+        );
+        const data = await res.json();
+        const convertedCurrency = data.rates.USD;
+
+        dispatch({ type: accountTypes.ACCOUNT_DEPOSIT, payload: convertedCurrency });
+    };
 
 }
 

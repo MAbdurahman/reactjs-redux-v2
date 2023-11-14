@@ -5,11 +5,11 @@ import CustomerOperations from "../redux/features/customers/CustomerOperations";
 import Customer from "../redux/features/customers/Customer";
 
 export default function App() {
-    const fullName = `John Doe`;
+    const fullName = useSelector((state) => state.customer.fullName);
 
     return (
         <div>
-            <h1 className={'heading-primary'}>The React-Redux Bank </h1>
+            <h1 className={'heading-primary align-center'}>The State Bank </h1>
             {fullName === "" ? (
                 <CustomerOperations />
             ) : (
