@@ -71,6 +71,7 @@ export default function accountReducer(state = accountInitialState, action) {
                 }
 
             }
+            break;
         case accountTypes.LOAN_PAYMENT:
             if (state.loanOutstanding < action.payload.amount) {
                 return state;
