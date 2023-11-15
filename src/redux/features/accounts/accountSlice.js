@@ -63,7 +63,6 @@ export default function accountReducer(state = accountInitialState, action) {
                 return state;
             }
             if (state.loan === 0 || state.loan < 0) {
-
                 return {
                     ...state,
                     loan: action.payload.amount,
@@ -72,6 +71,7 @@ export default function accountReducer(state = accountInitialState, action) {
                 }
 
             }
+            break;
         case accountTypes.LOAN_PAYMENT:
             if (state.loanOutstanding < action.payload.amount) {
                 return state;
@@ -92,11 +92,11 @@ export default function accountReducer(state = accountInitialState, action) {
                 }
             }
 
-
+/*
         case accountTypes.ACCOUNT_DEPOSIT:
             return {
                 ...state, isLoading: true
-            }
+            }*/
         default:
             return state;
     }
