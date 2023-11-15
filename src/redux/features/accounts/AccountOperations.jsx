@@ -13,10 +13,10 @@ export default function AccountOperations() {
 
     const dispatch = useDispatch();
     const {
-        loan: currentLoan,
+        /*loan: currentLoan,*/
         loanPurpose: currentLoanPurpose,
         loanOutstanding,
-        balance,
+        /*balance,*/
         isLoading,
     } = useSelector((store) => store.account);
 
