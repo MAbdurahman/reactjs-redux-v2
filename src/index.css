@@ -221,7 +221,7 @@ html {
 @media (max-width: 360px) {
   html {
 
-    font-size: 66.667%;
+    font-size: 66%;
   }
 }
 
@@ -237,12 +237,19 @@ html {
 body {
   height: 100vh;
   margin: 0;
+  padding: 1em .5em;
   overflow-x: hidden;
   display: flex;
   justify-content: center;
   font-family: var(--ff-secondary-font);
   font-weight: var(--fw--font-weight-normal);
   background-color: #f0f0f0;
+}
+
+@media only screen and (max-width: 546px) {
+  :root {
+    min-width: 100vw;
+  }
 }
 
 h1, h2, h3, h4, h5 {
@@ -258,7 +265,8 @@ h1 {
 }
 
 h2 {
-  font-size: 2.441rem;
+  /*font-size: 2.441rem;*/
+  font-size: 1.25rem;
   margin: 1rem 0;
 }
 
@@ -300,15 +308,17 @@ img {
 
 .heading-primary {
   /*margin-top: 2em;*/
-  font-size: 3.052rem;
+  /*font-size: 3.052rem;*/
+  font-size: 2.5rem;
 }
 
 .heading-secondary {
   font-size: 2.441rem;
+  font-size: 1.8rem;
 }
 
 .heading-tertiary {
-  font-size: 1.953rem;
+  font-size: 1.125rem;
 }
 
 .paragraph {
@@ -358,7 +368,7 @@ img {
           project styles
 ================================================*/
 body {
-  margin: 40px;
+  margin: 32px;
 }
 input,
 select {
@@ -390,6 +400,12 @@ button {
   background-color: #f7f7f7;
   padding: 16px;
 }
+@media screen and (max-width: 545px) {
+  .inputs {
+    max-width: 80vw;
+    min-width: 70vw;
+  }
+}
 
 .inputs > * + * {
   margin-top: 20px;
@@ -404,7 +420,7 @@ button {
   background-color: #f7f7f7;
   /*padding: 24px 32px;*/
   font-weight: bold;
-  font-size: 32px;
+  font-size: 2rem;
   text-align: right;
   /*min-width: 80px;
   text-align: center;*/
